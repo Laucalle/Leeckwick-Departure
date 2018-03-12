@@ -81,7 +81,7 @@ public class Astar : MonoBehaviour {
         //Ray ray = new Ray(current.pos, current.pos - new_pos);
         RaycastHit2D hit = Physics2D.Raycast(current.pos, current.pos - new_pos, distance);
         
-        if (hit.collider == null || hit.collider == GetComponent<Collider2D>())
+        if (hit.collider == null || hit.collider == GetComponent<Collider2D>() || hit.collider.name == "Player" )
         {
             Node expand = new Node(new_pos, Vector2.Distance(new_pos, destination), current.g + distance, current);
             if (open.Contains(expand))
@@ -109,8 +109,13 @@ public class Astar : MonoBehaviour {
             }
         } else Debug.Log(hit.collider.name);
     }
-    public List<Vector2> planToPosition(Vector2 origin, Vector2 destination) {
+    public List<Vector2> planToPosition(Vector2 origin, Vector2 destination, float fat_dot) {
         Node start = new Node(origin, Vector2.Distance(origin,destination), 0, null);
+
+        if(fat_dot < gen_step / 2)
+        {
+            fat_dot = gen_step / 2;
+        }
 
         open.Add(start);
         Node dest = new Node(destination, 0, 0, null);
@@ -119,10 +124,14 @@ public class Astar : MonoBehaviour {
         while (open.Count != 0) {
             current = open[0];
             Debug.Log(current.pos);
-            if (current.Equals(dest))
+            /*if (current.Equals(dest))
             {
                 return BuildPlan(current);
-            }
+            }*/
+           if (Vector2.Distance(destination, current.pos) < fat_dot)
+           {
+               return BuildPlan(current);
+           }
 
             open.Remove(current);
             closed.Add(current);
