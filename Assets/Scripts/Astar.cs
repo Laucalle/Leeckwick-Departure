@@ -45,7 +45,6 @@ public class NodeComparer : IComparer<Node> {
 public class Astar : MonoBehaviour {
     List<Node> open;
     List<Node> closed;
-    [SerializeField]
     public float gen_step;
 	// Use this for initialization
 	void Start () {
@@ -62,6 +61,8 @@ public class Astar : MonoBehaviour {
             parent = parent.parent;
         }
         path.Reverse();
+        open.Clear();
+        closed.Clear();
         return path;
     }
     private void UpdateParents(Node expand) {
@@ -107,32 +108,44 @@ public class Astar : MonoBehaviour {
             {
                 open.Add(expand);
             }
-        } else Debug.Log(hit.collider.name);
+        }
+    }
+
+    void RemoveWorseThan(float threshold) {
+        for (int i = 0; i < open.Count; i++) {
+            if (open[i].g + open[i].h < threshold) {
+                open.RemoveRange(i, open.Count - i);
+                break;
+            }
+        }
     }
     public List<Vector2> planToPosition(Vector2 origin, Vector2 destination, float fat_dot) {
         Node start = new Node(origin, Vector2.Distance(origin,destination), 0, null);
-
-        if(fat_dot < gen_step / 2)
-        {
-            fat_dot = gen_step / 2;
-        }
+        Node.node_step = gen_step / 2;
+        //if(fat_dot < gen_step / 2)
+        //{
+        //    fat_dot = gen_step / 2;
+        //}
 
         open.Add(start);
         Node dest = new Node(destination, 0, 0, null);
         Node current;
+        float best_fit;
         //float gen_step = Node.node_step * 2;
         while (open.Count != 0) {
+            best_fit = open[0].g + open[0].h;
+            RemoveWorseThan(best_fit * 0.7f);
+
             current = open[0];
-            Debug.Log(current.pos);
             /*if (current.Equals(dest))
             {
                 return BuildPlan(current);
             }*/
-           if (Vector2.Distance(destination, current.pos) < fat_dot)
-           {
-               return BuildPlan(current);
-           }
-
+            if (Vector2.Distance(destination, current.pos) < fat_dot)
+            {
+                return BuildPlan(current);
+            }
+            
             open.Remove(current);
             closed.Add(current);
 
@@ -153,8 +166,11 @@ public class Astar : MonoBehaviour {
             // bottom rigth
             ExpandNode(current, destination, new Vector2(gen_step, -gen_step));
             open.Sort(new NodeComparer());
+            
         }
         // there is no path so it returns an empty list
+        open.Clear();
+        closed.Clear();
         return new List<Vector2>();
     }
 
