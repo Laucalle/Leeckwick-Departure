@@ -45,12 +45,21 @@ public class NodeComparer : IComparer<Node> {
 public class Astar : MonoBehaviour {
     List<Node> open;
     List<Node> closed;
-    public float gen_step;
+    float gen_step;
+    public float ray_factor;
+
+    public LayerMask blockingLayer;
+
 	// Use this for initialization
 	void Start () {
-        Node.node_step = gen_step / 2;
         open = new List<Node>();
         closed = new List<Node>();
+    }
+
+    public void InitVars(float g_step)
+    {
+        gen_step = g_step;
+        Node.node_step = gen_step / 2;
     }
 
     private List<Vector2> BuildPlan(Node current) {
@@ -73,68 +82,132 @@ public class Astar : MonoBehaviour {
             }
         });
     }
-    
-    private void ExpandNode(Node current, Vector2 destination, Vector2 step) {
-        //float gen_step = Node.node_step * 2;
-        Vector2 new_pos = current.pos + step;
-        float distance = Vector2.Distance(new_pos, current.pos);
+    private List<KeyValuePair<bool, Vector2>> TryRay(Node current, float step) {
+        //hit.collider == null || hit.collider == GetComponent<Collider2D>() || hit.collider.name == "Player"
 
-        //Ray ray = new Ray(current.pos, current.pos - new_pos);
-        RaycastHit2D hit = Physics2D.Raycast(current.pos, current.pos - new_pos, distance);
-        
-        if (hit.collider == null || hit.collider == GetComponent<Collider2D>() || hit.collider.name == "Player" )
-        {
-            Node expand = new Node(new_pos, Vector2.Distance(new_pos, destination), current.g + distance, current);
-            if (open.Contains(expand))
+        List<KeyValuePair<bool, Vector2>> result = new List<KeyValuePair<bool, Vector2>>();
+
+        Vector2 vstep = new Vector2(-step,step);
+        float distance_diag = Vector2.Distance( current.pos, vstep + current.pos);
+
+        RaycastHit2D hit = Physics2D.Linecast(current.pos, current.pos + (vstep*ray_factor), blockingLayer);
+        result.Add(new KeyValuePair<bool, Vector2>(hit.collider == null, current.pos + vstep));
+        if (!result[result.Count-1].Key) Debug.Log(hit.collider.name);
+
+        vstep = new Vector2(0, step);
+        float distance_str = Vector2.Distance( current.pos, vstep + current.pos);
+
+        hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
+        result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null , current.pos + vstep));
+        if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
+
+        vstep = new Vector2(step, step);
+        hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
+        result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null, current.pos + vstep));
+        if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
+
+        vstep = new Vector2(step, 0);
+        distance_str = Vector2.Distance(current.pos, vstep + current.pos);
+
+        hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
+        result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null , current.pos + vstep));
+        if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
+
+        vstep = new Vector2(step, -step);
+        hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
+        result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null, current.pos + vstep));
+        if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
+
+        vstep = new Vector2(0, -step);
+
+        distance_str = Vector2.Distance( current.pos, vstep + current.pos);
+        hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
+        result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null, current.pos + vstep));
+        if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
+
+        vstep = new Vector2(-step,-step);
+
+        hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
+        result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null, current.pos + vstep));
+        if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
+
+        vstep = new Vector2(-step, 0);
+
+        distance_str = Vector2.Distance(current.pos, vstep + current.pos);
+        hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
+        result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null, current.pos + vstep));
+        if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
+ 
+        foreach (KeyValuePair<bool, Vector2> pair in result) {
+            if (pair.Key)
             {
-                Node idx = open.Find( x => (x.Equals(expand)));
-                if (idx.g + idx.h > expand.g + expand.h)
-                {
-                    idx.parent = current;
-                    idx.g = expand.g;
-                }
+                Debug.DrawLine(current.pos, pair.Value, Color.blue, 3f);
             }
-            else if (closed.Contains(expand))
-            {
-                Node idx = closed.Find(x => (x.Equals(expand)));
-                if (idx.g + idx.h > expand.g + expand.h)
-                {
-                    idx.parent = current;
-                    idx.g = expand.g;
-                    UpdateParents(expand);
-                }
+            else {
+                Debug.DrawLine(current.pos, pair.Value, Color.red, 3f);
             }
-            else
-            {
-                open.Add(expand);
+        }
+
+        return result;
+    }
+    
+    private void ExpandNode(Node current, Vector2 destination, float step) {
+
+        List<KeyValuePair<bool, Vector2>> possible_nodes = TryRay(current, step);
+
+        for (int i = 1; i <= possible_nodes.Count; i++) {
+            if (possible_nodes[i % possible_nodes.Count].Key && possible_nodes[(i + 1) % possible_nodes.Count].Key && possible_nodes[(i - 1) % possible_nodes.Count].Key) {
+                float distance = Vector2.Distance(possible_nodes[i % possible_nodes.Count].Value, current.pos);
+                Node expand = new Node(possible_nodes[i % possible_nodes.Count].Value, Vector2.Distance(possible_nodes[i % possible_nodes.Count].Value, destination), current.g + distance, current);
+                Debug.DrawLine(current.pos, possible_nodes[i % possible_nodes.Count].Value, Color.blue, 3f);
+                if (open.Contains(expand))
+                {
+                    Node idx = open.Find(x => (x.Equals(expand)));
+                    if (idx.g + idx.h > expand.g + expand.h)
+                    {
+                        idx.parent = current;
+                        idx.g = expand.g;
+                    }
+                }
+                else if (closed.Contains(expand))
+                {
+                    Node idx = closed.Find(x => (x.Equals(expand)));
+                    if (idx.g + idx.h > expand.g + expand.h)
+                    {
+                        idx.parent = current;
+                        idx.g = expand.g;
+                        UpdateParents(expand);
+                    }
+                }
+                else
+                {
+                    open.Add(expand);
+                }
             }
         }
     }
 
     void RemoveWorseThan(float threshold) {
         for (int i = 0; i < open.Count; i++) {
-            if (open[i].g + open[i].h < threshold) {
+            if (open[i].g + open[i].h > threshold) {
                 open.RemoveRange(i, open.Count - i);
+                Debug.Log(open.Count);
                 break;
             }
         }
     }
     public List<Vector2> planToPosition(Vector2 origin, Vector2 destination, float fat_dot) {
         Node start = new Node(origin, Vector2.Distance(origin,destination), 0, null);
-        Node.node_step = gen_step / 2;
-        //if(fat_dot < gen_step / 2)
-        //{
-        //    fat_dot = gen_step / 2;
-        //}
-
+        Node.node_step = gen_step / 4;
+        //if (fat_dot < Node.node_step) fat_dot = Node.node_step;
         open.Add(start);
         Node dest = new Node(destination, 0, 0, null);
         Node current;
         float best_fit;
-        //float gen_step = Node.node_step * 2;
         while (open.Count != 0) {
             best_fit = open[0].g + open[0].h;
-            RemoveWorseThan(best_fit * 0.7f);
+            Debug.Log("mejor f: "+ best_fit+", umbral: " + best_fit * 3f);
+            RemoveWorseThan(best_fit * 3f);
 
             current = open[0];
             /*if (current.Equals(dest))
@@ -149,26 +222,13 @@ public class Astar : MonoBehaviour {
             open.Remove(current);
             closed.Add(current);
 
-            //top left
-            ExpandNode(current, destination, new Vector2(-gen_step, gen_step));
-            // up
-            ExpandNode(current, destination, new Vector2(0, gen_step));
-            // top right
-            ExpandNode(current, destination, new Vector2(gen_step, gen_step));
-            // left
-            ExpandNode(current, destination, new Vector2(-gen_step, 0));
-            // rigt
-            ExpandNode(current, destination, new Vector2(gen_step, 0));
-            // bottom left
-            ExpandNode(current, destination, new Vector2(-gen_step, -gen_step));
-            // down
-            ExpandNode(current, destination, new Vector2(0, -gen_step));
-            // bottom rigth
-            ExpandNode(current, destination, new Vector2(gen_step, -gen_step));
+            ExpandNode(current, destination,  gen_step);
+           
             open.Sort(new NodeComparer());
             
         }
-        // there is no path so it returns an empty list
+
+        //List<Vector2> result = BuildPlan(current);
         open.Clear();
         closed.Clear();
         return new List<Vector2>();

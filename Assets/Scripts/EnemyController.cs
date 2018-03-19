@@ -15,13 +15,14 @@ public class EnemyController : MonoBehaviour {
     List<Vector2> _plan;
     int _current_step;
     GameObject player;
+    private Rigidbody2D rb2d;
 
     // Use this for initialization
     void Start () {
+        rb2d = GetComponent<Rigidbody2D>();
         myplanner = GetComponent<Astar>();
-        myplanner.gen_step = transform.localScale.x * GetComponent<BoxCollider2D>().size.x;
+        myplanner.InitVars(transform.localScale.x * GetComponent<BoxCollider2D>().size.x /2);
         player = GameObject.Find("Player");
-        Debug.Log(myplanner.gen_step);
         _replan = true;
         _follow = true;
 	}
@@ -34,7 +35,10 @@ public class EnemyController : MonoBehaviour {
             {
                 float distance_to_target = Vector3.Distance(transform.position, player.transform.position);
 
-                _plan = myplanner.planToPosition(transform.position, player.transform.position,distance_to_target/2);
+                //if (distance_to_target < 2.0f) distance_to_target = 0.0f;
+
+                _plan = myplanner.planToPosition(transform.position, player.transform.position, distance_to_target/2);
+                Debug.Log(_plan.Count);
                 Debug.Log("New Plan distance" + Vector2.Distance(_plan[_plan.Count - 1], new Vector2(player.transform.position.x, player.transform.position.y)));
                 _follow = true;
                 _current_step = 0;
@@ -43,6 +47,7 @@ public class EnemyController : MonoBehaviour {
         }
         
         Vector3 direction = ( new Vector3(_plan[_current_step].x, _plan[_current_step].y) - transform.position);
+        //rb2d.velocity = direction * 1.0f;
         transform.position += direction.normalized * Time.deltaTime;
         
         if (Vector3.Distance(new Vector3(_plan[_current_step].x, _plan[_current_step].y), transform.position) < transform.localScale.x * GetComponent<BoxCollider2D>().size.x)
