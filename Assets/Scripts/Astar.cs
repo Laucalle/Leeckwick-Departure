@@ -51,7 +51,7 @@ public class Astar : MonoBehaviour {
     public LayerMask blockingLayer;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         open = new List<Node>();
         closed = new List<Node>();
     }
@@ -92,51 +92,51 @@ public class Astar : MonoBehaviour {
 
         RaycastHit2D hit = Physics2D.Linecast(current.pos, current.pos + (vstep*ray_factor), blockingLayer);
         result.Add(new KeyValuePair<bool, Vector2>(hit.collider == null, current.pos + vstep));
-        if (!result[result.Count-1].Key) Debug.Log(hit.collider.name);
+        //if (!result[result.Count-1].Key) Debug.Log(hit.collider.name);
 
         vstep = new Vector2(0, step);
         float distance_str = Vector2.Distance( current.pos, vstep + current.pos);
 
         hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
         result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null , current.pos + vstep));
-        if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
+        //if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
 
         vstep = new Vector2(step, step);
         hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
         result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null, current.pos + vstep));
-        if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
+        //if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
 
         vstep = new Vector2(step, 0);
         distance_str = Vector2.Distance(current.pos, vstep + current.pos);
 
         hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
         result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null , current.pos + vstep));
-        if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
+        //if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
 
         vstep = new Vector2(step, -step);
         hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
         result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null, current.pos + vstep));
-        if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
+        //if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
 
         vstep = new Vector2(0, -step);
 
         distance_str = Vector2.Distance( current.pos, vstep + current.pos);
         hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
         result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null, current.pos + vstep));
-        if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
+        //if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
 
         vstep = new Vector2(-step,-step);
 
         hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
         result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null, current.pos + vstep));
-        if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
+        //if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
 
         vstep = new Vector2(-step, 0);
 
         distance_str = Vector2.Distance(current.pos, vstep + current.pos);
         hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
         result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null, current.pos + vstep));
-        if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
+        //if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
  
         foreach (KeyValuePair<bool, Vector2> pair in result) {
             if (pair.Key)
@@ -199,14 +199,14 @@ public class Astar : MonoBehaviour {
     public List<Vector2> planToPosition(Vector2 origin, Vector2 destination, float fat_dot) {
         Node start = new Node(origin, Vector2.Distance(origin,destination), 0, null);
         Node.node_step = gen_step / 4;
-        //if (fat_dot < Node.node_step) fat_dot = Node.node_step;
+        //if (fat_dot < gen_step) fat_dot = gen_step;
         open.Add(start);
         Node dest = new Node(destination, 0, 0, null);
         Node current;
         float best_fit;
         while (open.Count != 0) {
             best_fit = open[0].g + open[0].h;
-            Debug.Log("mejor f: "+ best_fit+", umbral: " + best_fit * 3f);
+            //Debug.Log("mejor f: "+ best_fit+", umbral: " + best_fit * 3f);
             RemoveWorseThan(best_fit * 3f);
 
             current = open[0];

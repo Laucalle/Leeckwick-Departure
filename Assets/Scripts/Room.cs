@@ -8,7 +8,7 @@ public class Room : MonoBehaviour {
     List<Vector2> _AlertPoints;
 
     [SerializeField]
-    public List<Vector2> _Patrol_1;
+    List<Vector2> _Patrol_1;
 
     [SerializeField]
     List<Vector2> _Patrol_2;
@@ -18,11 +18,6 @@ public class Room : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        _Patrol_2 = new List<Vector2>();
-
-        _Patrol_2.Add(new Vector2(-2, -2));
-        _Patrol_2.Add(new Vector2(0, 2));
-        _Patrol_2.Add(new Vector2(-1, -1));
 
     }
 	
@@ -48,9 +43,4 @@ public class Room : MonoBehaviour {
         return _AlertPoints;
     }
 
-    public void doNothing()
-    {
-        Debug.Log("Do nothing is called");
-
-    }
 }
