@@ -8,14 +8,17 @@ using UnityEngine.SceneManagement;
 // completar persecucion: el enemigo conoce la ubicacion y planifica aunque te muevas
 // Vision / oido
 // estado alerta (??)
+// LLamar a la planificacion de las patrullas en la pantalla de carga
 
 public class EnemyController : MonoBehaviour {
     Astar myplanner;
-    bool _follow, _replan;
+    bool _follow, _replan, _patrolling;
     List<Vector2> _plan;
-    int _current_step;
+    int _current_step, _currentPatrolPlan;
     GameObject player;
     private Rigidbody2D rb2d;
+    List<List<Vector2>> _patrols = null;
+    List<Vector2> _patrolPoints;
 
     // Use this for initialization
     void Start () {
@@ -24,13 +27,36 @@ public class EnemyController : MonoBehaviour {
         myplanner.InitVars(transform.localScale.x * GetComponent<BoxCollider2D>().size.x /2);
         player = GameObject.Find("Player");
         _replan = true;
-        _follow = true;
+        _follow = false;
+        _patrolling = true;
+        _currentPatrolPlan = 0;
 	}
+
+    void InitPatrols()
+    {
+
+        for(int i = 0; i < _patrolPoints.Count; i++)
+        {
+
+            _patrols.Add(myplanner.planToPosition(_patrolPoints[i], _patrolPoints[(i + 1) % _patrolPoints.Count], 0.5f));
+
+        }
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
         if (_replan) {
             _replan = false;
+            if (_patrolling)
+            {
+                if(_patrols == null) InitPatrols();
+
+                _plan = _patrols[_currentPatrolPlan];
+                _currentPatrolPlan = (_currentPatrolPlan + 1) % _patrolPoints.Count;
+            }
+
+
             if(_follow)
             {
                 float distance_to_target = Vector3.Distance(transform.position, player.transform.position);
