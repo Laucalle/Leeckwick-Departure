@@ -176,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 334330315}
   - component: {fileID: 334330314}
+  - component: {fileID: 334330310}
   m_Layer: 0
   m_Name: sala1
   m_TagString: Untagged
@@ -183,6 +184,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &334330310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 334330309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 289be63d16234144bb693fa95ca0f719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _AlertPoints:
+  - {x: 0, y: 0}
+  _Patrol_1:
+  - {x: -2, y: -2}
+  - {x: 0, y: 2}
+  - {x: -1, y: -1}
+  _Patrol_2: []
+  _Patrol_3: []
 --- !u!212 &334330314
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -386,6 +406,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4a32fb2c174fa4f91a0524be6381a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _roomId: 1
+  _myRoom: {fileID: 334330310}
 --- !u!61 &616072161
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -462,7 +484,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 616072159}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.67, y: 0.99, z: 0}
+  m_LocalPosition: {x: 2, y: -2, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
