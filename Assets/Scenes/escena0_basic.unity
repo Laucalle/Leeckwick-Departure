@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4a32fb2c174fa4f91a0524be6381a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roomId: 1
+  _roomId: 2
   _myRoom: {fileID: 334330310}
 --- !u!61 &616072161
 BoxCollider2D:

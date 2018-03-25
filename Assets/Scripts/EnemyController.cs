@@ -38,6 +38,7 @@ public class EnemyController : MonoBehaviour {
         _follow = false;
         _patrolling = true;
         _currentPatrolPlan = 0;
+        _patrolPoints = new List<Vector2>();
 
     }
 
@@ -53,16 +54,20 @@ public class EnemyController : MonoBehaviour {
 
     }
 
-    void PlanPatrol() {
-        if (_patrols == null || _patrolPoints == null)
+    void PlanPatrol()
+    {
+        if (_patrolPoints == null || _patrolPoints.Count == 0)
         {
-            _patrolPoints = _myRoom.GetComponent<Room>().getPatrol(_roomId);
+            Debug.Log("Entrando");
+            _patrolPoints = _myRoom.getPatrol(_roomId);
             InitPatrols();
         }
 
         
         _plan = _patrols[_currentPatrolPlan];
         _currentPatrolPlan = (_currentPatrolPlan + 1) % _patrolPoints.Count;
+
+        Debug.Log(_plan.Count);
     }
 
     void PlanFollow() {
