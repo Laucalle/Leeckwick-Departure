@@ -40,14 +40,14 @@ public class EnemyController : MonoBehaviour {
         _currentPatrolPlan = 0;
         //_patrolPoints = new List<Vector2>();
         _patrolPoints = _myRoom.getPatrol(_roomId);
-        for(int i =0; i<_patrolPoints.Count;i++)
-            Debug.Log(_patrolPoints[i]);
+        for (int i = 0; i < _patrolPoints.Count; i++)
+            Debug.DrawLine(_patrolPoints[i], _patrolPoints[i] + new Vector2(0.1f, 0.1f), Color.yellow, 60f);
         InitPatrols();
     }
 
     void InitPatrols()
     {
-        float fat_dot= 0.8F ;
+        float fat_dot= 0.0F;
         Debug.Log(transform.localScale.x +"*"+ GetComponent<BoxCollider2D>().size.x+"="+transform.localScale.x * GetComponent<BoxCollider2D>().size.x);
         _patrols = new List<List<Vector2>>();
         for(int i = 0; i < _patrolPoints.Count; i++)
@@ -55,20 +55,19 @@ public class EnemyController : MonoBehaviour {
             //Debug.Log(myplanner.planToPosition(_patrolPoints[i], _patrolPoints[(i + 1) % _patrolPoints.Count], fat_dot).Count);
             _patrols.Add(myplanner.planToPosition(_patrolPoints[i], _patrolPoints[(i + 1) % _patrolPoints.Count], fat_dot));
             Debug.Log("Planning from "+ _patrolPoints[i] +" to " + _patrolPoints[(i + 1) % _patrolPoints.Count]+ " with " + _patrols[i].Count);
+
+            for(int j = 0; j< _patrols[i].Count - 1; j++)
+            {
+                Debug.DrawLine(_patrols[i][j], _patrols[i][j + 1], Color.blue, 60f);
+            }
         }
+
+        
 
     }
 
     void PlanPatrol()
-    {
-       // if (_patrols == null )//|| _patrolPoints.Count == 0)
-        //{
-        //    Debug.Log("Entrando");
-            //_patrolPoints = _myRoom.getPatrol(_roomId);
-            //InitPatrols();
-        //}
-
-        
+    {        
         _plan = _patrols[_currentPatrolPlan];
         _currentPatrolPlan = (_currentPatrolPlan + 1) % _patrolPoints.Count;
 

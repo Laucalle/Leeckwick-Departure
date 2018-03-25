@@ -141,10 +141,10 @@ public class Astar : MonoBehaviour {
         foreach (KeyValuePair<bool, Vector2> pair in result) {
             if (pair.Key)
             {
-                Debug.DrawLine(current.pos, pair.Value, Color.blue, 3f);
+                //Debug.DrawLine(current.pos, pair.Value, Color.blue, 3f);
             }
             else {
-                Debug.DrawLine(current.pos, pair.Value, Color.red, 3f);
+                //Debug.DrawLine(current.pos, pair.Value, Color.red, 3f);
             }
         }
 
@@ -159,7 +159,7 @@ public class Astar : MonoBehaviour {
             if (possible_nodes[i % possible_nodes.Count].Key && possible_nodes[(i + 1) % possible_nodes.Count].Key && possible_nodes[(i - 1) % possible_nodes.Count].Key) {
                 float distance = Vector2.Distance(possible_nodes[i % possible_nodes.Count].Value, current.pos);
                 Node expand = new Node(possible_nodes[i % possible_nodes.Count].Value, Vector2.Distance(possible_nodes[i % possible_nodes.Count].Value, destination), current.g + distance, current);
-                Debug.DrawLine(current.pos, possible_nodes[i % possible_nodes.Count].Value, Color.blue, 3f);
+                //Debug.DrawLine(current.pos, possible_nodes[i % possible_nodes.Count].Value, Color.blue, 3f);
                 if (open.Contains(expand))
                 {
                     Node idx = open.Find(x => (x.Equals(expand)));
@@ -196,10 +196,11 @@ public class Astar : MonoBehaviour {
             }
         }
     }
+
     public List<Vector2> planToPosition(Vector2 origin, Vector2 destination, float fat_dot) {
         Node start = new Node(origin, Vector2.Distance(origin,destination), 0, null);
         Node.node_step = gen_step / 4;
-        //if (fat_dot < gen_step) fat_dot = gen_step;
+        if (fat_dot < gen_step) fat_dot = gen_step;
         open.Add(start);
         Node dest = new Node(destination, 0, 0, null);
         Node current;
