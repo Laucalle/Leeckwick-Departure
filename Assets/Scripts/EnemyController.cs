@@ -20,6 +20,8 @@ public class EnemyController : MonoBehaviour {
     List<List<Vector2>> _patrols = null;
     List<Vector2> _patrolPoints = null;
     Room _currentRoom;
+    Vector3 movDirection;
+
 
     [SerializeField]
     int _roomId;
@@ -38,6 +40,7 @@ public class EnemyController : MonoBehaviour {
         _follow = false;
         _patrolling = true;
         _currentPatrolPlan = 0;
+        movDirection = new Vector3(0, -1, 0);
         //_patrolPoints = new List<Vector2>();
         _patrolPoints = _myRoom.getPatrol(_roomId);
         for (int i = 0; i < _patrolPoints.Count; i++)
@@ -86,10 +89,10 @@ public class EnemyController : MonoBehaviour {
     }
 
     void ExecutePlanStep() {
-        
-        Vector3 direction = (new Vector3(_plan[_current_step].x, _plan[_current_step].y) - transform.position);
+
+        movDirection = (new Vector3(_plan[_current_step].x, _plan[_current_step].y) - transform.position);
         //rb2d.velocity = direction * 1.0f;
-        transform.position += direction.normalized * Time.deltaTime;
+        transform.position += movDirection.normalized * Time.deltaTime;
         
         if (Vector3.Distance(new Vector3(_plan[_current_step].x, _plan[_current_step].y), transform.position) < transform.localScale.x * GetComponent<BoxCollider2D>().size.x)
         {
@@ -134,6 +137,13 @@ public class EnemyController : MonoBehaviour {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
             
+
+    }
+
+    public Vector3 getDir()
+    {
+
+        return movDirection;
 
     }
 }
