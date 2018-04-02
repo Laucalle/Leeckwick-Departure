@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour {
     List<Vector2> _patrolPoints = null;
     Room _currentRoom;
     Vector3 movDirection;
+    float timeLastSighting;
 
 
     [SerializeField]
@@ -70,7 +71,7 @@ public class EnemyController : MonoBehaviour {
     }
 
     void PlanPatrol()
-    {        
+    {
         _plan = _patrols[_currentPatrolPlan];
         _currentPatrolPlan = (_currentPatrolPlan + 1) % _patrolPoints.Count;
 
@@ -109,6 +110,8 @@ public class EnemyController : MonoBehaviour {
                 Debug.LogWarning(_current_step + " of " + _plan.Count);
             }
         }
+
+        Debug.DrawLine(transform.position, transform.position + movDirection);
     }
 	// Update is called once per frame
 	void Update () {
@@ -122,7 +125,20 @@ public class EnemyController : MonoBehaviour {
 
             if(_follow)
             {
-                PlanFollow();
+                if (Time.time - timeLastSighting > 3)
+                {
+                    _follow = false;
+                    _patrolling = true;
+                    float fat_dot = 0.0f;
+                    _plan = myplanner.planToPosition(transform.position, _patrolPoints[0], fat_dot);
+                    _currentPatrolPlan = 0;
+                }
+                else
+                {
+                    PlanFollow();
+                }
+
+                    
             }
                 
         }
@@ -136,8 +152,7 @@ public class EnemyController : MonoBehaviour {
         if (coll.gameObject.name == "Player") {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-            
-
+        
     }
 
     public Vector3 getDir()
@@ -145,5 +160,14 @@ public class EnemyController : MonoBehaviour {
 
         return movDirection;
 
+    }
+
+    public void SetState(bool patrolling, bool following, bool alert)
+    {
+        if(_replan == false) _replan = true;
+
+        timeLastSighting = Time.time;
+        _patrolling = patrolling;
+        _follow = following;
     }
 }
