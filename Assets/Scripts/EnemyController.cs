@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// TO DO: patrullas - condicion de carrera del metodo Start
-// poda A*
-// completar persecucion: el enemigo conoce la ubicacion y planifica aunque te muevas
-// Vision / oido
+
 // estado alerta (??)
 // LLamar a la planificacion de las patrullas en la pantalla de carga
 
 public class EnemyController : MonoBehaviour {
     Astar myplanner;
-    bool _follow, _replan, _patrolling;
+    bool _follow, _replan, _patrolling, _lookAround;
     List<Vector2> _plan;
     int _current_step, _currentPatrolPlan;
     GameObject player;
@@ -20,8 +17,8 @@ public class EnemyController : MonoBehaviour {
     List<List<Vector2>> _patrols = null;
     List<Vector2> _patrolPoints = null;
     Room _currentRoom;
-    Vector3 movDirection;
-    float timeLastSighting;
+    Vector3 movDirection, lastKnownMovDirection;
+    float lastSightingClock, lookingAroundClock;
     GameObject _target;
 
 
@@ -29,6 +26,9 @@ public class EnemyController : MonoBehaviour {
     int _roomId;
     [SerializeField]
     Room _myRoom;
+
+    public float followingTime;
+    public float lookingAroundTime;
     
 
 
@@ -41,9 +41,9 @@ public class EnemyController : MonoBehaviour {
         _replan = true;
         _follow = false;
         _patrolling = true;
+        _lookAround = false;
         _currentPatrolPlan = 0;
         movDirection = new Vector3(0, -1, 0);
-        //_patrolPoints = new List<Vector2>();
         _patrolPoints = _myRoom.getPatrol(_roomId);
         for (int i = 0; i < _patrolPoints.Count; i++)
             Debug.DrawLine(_patrolPoints[i], _patrolPoints[i] + new Vector2(0.1f, 0.1f), Color.yellow, 60f);
@@ -53,14 +53,10 @@ public class EnemyController : MonoBehaviour {
     void InitPatrols()
     {
         float fat_dot= 0.0F;
-        Debug.Log(transform.localScale.x +"*"+ GetComponent<BoxCollider2D>().size.x+"="+transform.localScale.x * GetComponent<BoxCollider2D>().size.x);
         _patrols = new List<List<Vector2>>();
         for(int i = 0; i < _patrolPoints.Count; i++)
         {
-            //Debug.Log(myplanner.planToPosition(_patrolPoints[i], _patrolPoints[(i + 1) % _patrolPoints.Count], fat_dot).Count);
             _patrols.Add(myplanner.planToPosition(_patrolPoints[i], _patrolPoints[(i + 1) % _patrolPoints.Count], fat_dot));
-            Debug.Log("Planning from "+ _patrolPoints[i] +" to " + _patrolPoints[(i + 1) % _patrolPoints.Count]+ " with " + _patrols[i].Count);
-
             for(int j = 0; j< _patrols[i].Count - 1; j++)
             {
                 Debug.DrawLine(_patrols[i][j], _patrols[i][j + 1], Color.blue, 60f);
@@ -75,17 +71,12 @@ public class EnemyController : MonoBehaviour {
     {
         _plan = _patrols[_currentPatrolPlan];
         _currentPatrolPlan = (_currentPatrolPlan + 1) % _patrolPoints.Count;
-
-        Debug.Log(_plan.Count);
     }
 
     void PlanFollow() {
         float distance_to_target = Vector3.Distance(transform.position, _target.transform.position);
-
-        //if (distance_to_target < 2.0f) distance_to_target = 0.0f;
         _plan = myplanner.planToPosition(transform.position, _target.transform.position, distance_to_target / 2);
-        Debug.Log(_plan.Count);
-        Debug.Log("New Plan distance" + Vector2.Distance(_plan[_plan.Count - 1], new Vector2(_target.transform.position.x, _target.transform.position.y)));
+        _follow = true;
         _follow = true;
         _current_step = 0;
     }
@@ -93,7 +84,7 @@ public class EnemyController : MonoBehaviour {
     void ExecutePlanStep() {
 
         movDirection = (new Vector3(_plan[_current_step].x, _plan[_current_step].y) - transform.position);
-        //rb2d.velocity = direction * 1.0f;
+        if(movDirection != Vector3.zero) lastKnownMovDirection = movDirection;
         transform.position += movDirection.normalized * Time.deltaTime;
         
         if (Vector3.Distance(new Vector3(_plan[_current_step].x, _plan[_current_step].y), transform.position) < transform.localScale.x * GetComponent<BoxCollider2D>().size.x)
@@ -105,10 +96,14 @@ public class EnemyController : MonoBehaviour {
                 if(_follow)_plan.Clear();
 
                 _current_step = 0;
+                if (!_follow)
+                {
+                    lookingAroundClock = Time.time;
+                    _lookAround = true;
+                }
                 _replan = true;
             }
             else {
-                Debug.LogWarning(_current_step + " of " + _plan.Count);
             }
         }
 
@@ -117,7 +112,7 @@ public class EnemyController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (_replan) {
+         if (_replan) {
             _replan = false;
             if (_patrolling)
             {
@@ -126,7 +121,7 @@ public class EnemyController : MonoBehaviour {
 
             if(_follow)
             {
-                if (Time.time - timeLastSighting > 3)
+                if (Time.time - lastSightingClock > 3)
                 {
                     _follow = false;
                     _patrolling = true;
@@ -142,10 +137,22 @@ public class EnemyController : MonoBehaviour {
                     
             }
                 
-        }
-    
-        ExecutePlanStep();    
+         }
+
+        if (_lookAround) LookAround();
+        else ExecutePlanStep();    
         
+    }
+
+    void LookAround()
+    {
+        if(Time.time - lookingAroundClock <= lookingAroundTime)
+        {
+            // Do funny stuff
+        } else
+        {
+            _lookAround = false;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D coll)
@@ -158,9 +165,7 @@ public class EnemyController : MonoBehaviour {
 
     public Vector3 getDir()
     {
-
-        return movDirection;
-
+        return lastKnownMovDirection.normalized;
     }
 
     public void SetState(bool patrolling, bool following, bool alert, GameObject target = null)
@@ -168,8 +173,9 @@ public class EnemyController : MonoBehaviour {
         if(_replan == false) _replan = true;
         if (target != null) _target = target;
         else _target = player;
-        timeLastSighting = Time.time;
+        lastSightingClock = Time.time;
         _patrolling = patrolling;
         _follow = following;
+        _lookAround = false;
     }
 }

@@ -83,7 +83,6 @@ public class Astar : MonoBehaviour {
         });
     }
     private List<KeyValuePair<bool, Vector2>> TryRay(Node current, float step) {
-        //hit.collider == null || hit.collider == GetComponent<Collider2D>() || hit.collider.name == "Player"
 
         List<KeyValuePair<bool, Vector2>> result = new List<KeyValuePair<bool, Vector2>>();
 
@@ -92,61 +91,43 @@ public class Astar : MonoBehaviour {
 
         RaycastHit2D hit = Physics2D.Linecast(current.pos, current.pos + (vstep*ray_factor), blockingLayer);
         result.Add(new KeyValuePair<bool, Vector2>(hit.collider == null, current.pos + vstep));
-        //if (!result[result.Count-1].Key) Debug.Log(hit.collider.name);
 
         vstep = new Vector2(0, step);
         float distance_str = Vector2.Distance( current.pos, vstep + current.pos);
 
         hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
         result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null , current.pos + vstep));
-        //if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
 
         vstep = new Vector2(step, step);
         hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
         result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null, current.pos + vstep));
-        //if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
 
         vstep = new Vector2(step, 0);
         distance_str = Vector2.Distance(current.pos, vstep + current.pos);
 
         hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
         result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null , current.pos + vstep));
-        //if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
 
         vstep = new Vector2(step, -step);
         hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
         result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null, current.pos + vstep));
-        //if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
 
         vstep = new Vector2(0, -step);
 
         distance_str = Vector2.Distance( current.pos, vstep + current.pos);
         hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
         result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null, current.pos + vstep));
-        //if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
 
         vstep = new Vector2(-step,-step);
 
         hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
         result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null, current.pos + vstep));
-        //if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
 
         vstep = new Vector2(-step, 0);
 
         distance_str = Vector2.Distance(current.pos, vstep + current.pos);
         hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
         result.Add(new KeyValuePair<bool, Vector2>(hit.transform == null, current.pos + vstep));
-        //if (!result[result.Count - 1].Key) Debug.Log(hit.collider.name);
- 
-        foreach (KeyValuePair<bool, Vector2> pair in result) {
-            if (pair.Key)
-            {
-                //Debug.DrawLine(current.pos, pair.Value, Color.blue, 3f);
-            }
-            else {
-                //Debug.DrawLine(current.pos, pair.Value, Color.red, 3f);
-            }
-        }
 
         return result;
     }
@@ -159,7 +140,7 @@ public class Astar : MonoBehaviour {
             if (possible_nodes[i % possible_nodes.Count].Key && possible_nodes[(i + 1) % possible_nodes.Count].Key && possible_nodes[(i - 1) % possible_nodes.Count].Key) {
                 float distance = Vector2.Distance(possible_nodes[i % possible_nodes.Count].Value, current.pos);
                 Node expand = new Node(possible_nodes[i % possible_nodes.Count].Value, Vector2.Distance(possible_nodes[i % possible_nodes.Count].Value, destination), current.g + distance, current);
-                //Debug.DrawLine(current.pos, possible_nodes[i % possible_nodes.Count].Value, Color.blue, 3f);
+
                 if (open.Contains(expand))
                 {
                     Node idx = open.Find(x => (x.Equals(expand)));
@@ -191,7 +172,6 @@ public class Astar : MonoBehaviour {
         for (int i = 0; i < open.Count; i++) {
             if (open[i].g + open[i].h > threshold) {
                 open.RemoveRange(i, open.Count - i);
-                Debug.Log(open.Count);
                 break;
             }
         }
@@ -207,7 +187,6 @@ public class Astar : MonoBehaviour {
         float best_fit;
         while (open.Count != 0) {
             best_fit = open[0].g + open[0].h;
-            //Debug.Log("mejor f: "+ best_fit+", umbral: " + best_fit * 3f);
             RemoveWorseThan(best_fit * 3f);
 
             current = open[0];
@@ -229,7 +208,6 @@ public class Astar : MonoBehaviour {
             
         }
 
-        //List<Vector2> result = BuildPlan(current);
         open.Clear();
         closed.Clear();
         return new List<Vector2>();

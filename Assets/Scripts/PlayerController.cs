@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: running key, makes noise
-
 public class PlayerController : MonoBehaviour {
     [SerializeField]
     float _speed;

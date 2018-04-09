@@ -39,7 +39,7 @@ public class FieldOfView : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine("FindTargetsWithDelay", .2f);
+        StartCoroutine("FindTargetsWithDelay", 0.2f);
         enemyRef = GetComponent<EnemyController>();
         viewMesh = new Mesh();
         viewMesh.name = "viewMesh";
@@ -63,7 +63,6 @@ public class FieldOfView : MonoBehaviour
 
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
-            Debug.Log("Hola");
             Transform target = targetsInViewRadius[i].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
             if (Vector3.Angle(GetComponent<EnemyController>().getDir(), dirToTarget) < viewAngle / 2)
@@ -85,14 +84,10 @@ public class FieldOfView : MonoBehaviour
         float aux_angle;
         if (!angleIsGlobal)
         {
-            //angleInDegrees += Mathf.Atan(GetComponent<EnemyController>().getDir().y / GetComponent<EnemyController>().getDir().x);
             aux_angle = Vector2.SignedAngle(GetComponent<EnemyController>().getDir(), new Vector2(0, 1));
-            //aux_angle = Mathf.Atan(GetComponent<EnemyController>().getDir().y / GetComponent<EnemyController>().getDir().x) * Mathf.Rad2Deg;
-
             if (aux_angle < 0) aux_angle = 360 + aux_angle;
 
             angleInDegrees += aux_angle;
-            Debug.Log("Suma: " + aux_angle + " Resultado: " + angleInDegrees);
         }
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), Mathf.Cos(angleInDegrees * Mathf.Deg2Rad), 0);
     }
@@ -109,7 +104,6 @@ public class FieldOfView : MonoBehaviour
             float angle = Vector2.SignedAngle(GetComponent<EnemyController>().getDir(), new Vector2(0, 1));
             if (angle < 0) angle = 360 + angle;
             angle = angle - viewAngle / 2 + stepAngleSize * i;
-            Debug.DrawLine(transform.position, transform.position + DirFromAngle(angle, true) * viewRadius, Color.red);
             newViewCast = viewCast(angle);
             viewPoints.Add(newViewCast._point);
         }
