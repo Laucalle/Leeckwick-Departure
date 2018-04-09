@@ -459,6 +459,7 @@ GameObject:
   - component: {fileID: 616072164}
   - component: {fileID: 616072160}
   - component: {fileID: 616072165}
+  - component: {fileID: 616072167}
   - component: {fileID: 616072166}
   m_Layer: 0
   m_Name: enemy
@@ -610,8 +611,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 2.5
-  meshResolution: 0.1
-  viewMeshFilter: {fileID: 72424813}
+  meshResolution: 0
+  viewMeshFilter: {fileID: 0}
   viewAngle: 72
   enemyRef: {fileID: 0}
   playerMask:
@@ -621,6 +622,26 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   visibleTargets: []
+--- !u!114 &616072167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 616072159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0466063c8eb8c4dbaaa1e751cd4a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRef: {fileID: 616072160}
+  hearRadius: 3
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  distractionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  audibleTargets: []
 --- !u!1 &691947938
 GameObject:
   m_ObjectHideFlags: 0

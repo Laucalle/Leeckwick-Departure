@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour {
     Room _currentRoom;
     Vector3 movDirection;
     float timeLastSighting;
+    GameObject _target;
 
 
     [SerializeField]
@@ -79,12 +80,12 @@ public class EnemyController : MonoBehaviour {
     }
 
     void PlanFollow() {
-        float distance_to_target = Vector3.Distance(transform.position, player.transform.position);
+        float distance_to_target = Vector3.Distance(transform.position, _target.transform.position);
 
         //if (distance_to_target < 2.0f) distance_to_target = 0.0f;
-        _plan = myplanner.planToPosition(transform.position, player.transform.position, distance_to_target / 2);
+        _plan = myplanner.planToPosition(transform.position, _target.transform.position, distance_to_target / 2);
         Debug.Log(_plan.Count);
-        Debug.Log("New Plan distance" + Vector2.Distance(_plan[_plan.Count - 1], new Vector2(player.transform.position.x, player.transform.position.y)));
+        Debug.Log("New Plan distance" + Vector2.Distance(_plan[_plan.Count - 1], new Vector2(_target.transform.position.x, _target.transform.position.y)));
         _follow = true;
         _current_step = 0;
     }
@@ -162,10 +163,11 @@ public class EnemyController : MonoBehaviour {
 
     }
 
-    public void SetState(bool patrolling, bool following, bool alert)
+    public void SetState(bool patrolling, bool following, bool alert, GameObject target = null)
     {
         if(_replan == false) _replan = true;
-
+        if (target != null) _target = target;
+        else _target = player;
         timeLastSighting = Time.time;
         _patrolling = patrolling;
         _follow = following;

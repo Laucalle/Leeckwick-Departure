@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		
 	}
+    public bool isAudible() {
+        return true;
+    }
     private void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
