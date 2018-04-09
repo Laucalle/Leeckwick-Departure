@@ -6,12 +6,19 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField]
-    float speed;
+    float _speed;
+    [SerializeField]
+    float _speedIncrement;
+
+    bool _run;
+    bool _audible;
 
     private Rigidbody2D rb2d;
 	// Use this for initialization
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
+        _run = false;
+        _audible = false;
 	}
 	
 	// Update is called once per frame
@@ -19,18 +26,30 @@ public class PlayerController : MonoBehaviour {
 		
 	}
     public bool isAudible() {
-        return true;
+        return _audible;
     }
     private void FixedUpdate()
     {
+        float actualSpeed;
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
 
-        //Vector2 movement = new Vector2(transform.position.x + (moveHorizontal * speed), transform.position.y + (moveVertical * speed));
-        rb2d.velocity = movement*speed;
-        //rb2d.MovePosition(movement);
-        //rb2d.AddForce(movement*speed);
-        //transform.position = new Vector2(transform.position.x+(moveHorizontal*speed), transform.position.y + (moveVertical*speed));
+        if (Input.GetKey("left shift") && movement.magnitude != 0)
+        {
+            actualSpeed = _speed * _speedIncrement;
+            _run = true;
+            _audible = true;
+        }
+        else
+        {
+
+            actualSpeed = _speed;
+            _run = false;
+            _audible = false;
+        }
+
+        rb2d.velocity = movement.normalized * actualSpeed;
+
     }
 }

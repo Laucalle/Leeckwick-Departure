@@ -611,8 +611,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 2.5
-  meshResolution: 0
-  viewMeshFilter: {fileID: 0}
+  meshResolution: 4
+  viewMeshFilter: {fileID: 72424813}
   viewAngle: 72
   enemyRef: {fileID: 0}
   playerMask:

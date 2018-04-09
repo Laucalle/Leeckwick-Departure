@@ -124,8 +124,8 @@ public class FieldOfView : MonoBehaviour
 
         for(int i = 0; i < vertexCount - 1; i++)
         {
-            vertices[i + 1] = viewPoints[i];
-            if(i < vertexCount - 2)
+            vertices[i + 1] = transform.InverseTransformPoint(viewPoints[i]);
+            if (i < vertexCount - 2)
             {
                 triangles[i * 3] = 0;
                 triangles[i * 3 + 1] = i + 1;
