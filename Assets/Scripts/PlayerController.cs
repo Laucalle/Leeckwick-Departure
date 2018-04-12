@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
 
     bool _run;
     bool _audible;
+    public Room _currentRoom;
 
     private Rigidbody2D rb2d;
 	// Use this for initialization
@@ -23,9 +24,16 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		
 	}
+
     public bool isAudible() {
         return _audible;
     }
+
+    public Room getRoom()
+    {
+        return _currentRoom;
+    }
+
     private void FixedUpdate()
     {
         float actualSpeed;

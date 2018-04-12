@@ -267,7 +267,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _AlertPoints:
-  - {x: 0, y: 0}
+  - {x: -0.75, y: 0.63}
+  - {x: 2.2, y: 0.63}
+  - {x: 2.2, y: -1.59}
+  - {x: -0.75, y: -1.59}
   _Patrol_1:
   - {x: -5.36, y: -2.93}
   - {x: -5.36, y: 3.44}
@@ -484,8 +487,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomId: 1
   _myRoom: {fileID: 334330310}
-  followingTime: 3
+  followingTime: 4
   lookingAroundTime: 5
+  alertTime: 10
+  _alertRadius: 4
 --- !u!61 &616072161
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -562,7 +567,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 616072159}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.36, y: -2.97, z: 0}
+  m_LocalPosition: {x: -5.3, y: -2.87, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.1}
   m_Children:
   - {fileID: 72424815}
@@ -580,7 +585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c25ec4692a72047b8da266b122b36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ray_factor: 2
+  ray_factor: 2.5
   blockingLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -798,6 +803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 1
   _speedIncrement: 2
+  _currentRoom: {fileID: 334330310}
 --- !u!212 &913067874
 SpriteRenderer:
   m_ObjectHideFlags: 0

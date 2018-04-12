@@ -4,21 +4,26 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-// estado alerta (??)
+// Aumentar rango vision mientras persigue
+// Arreglar el lookAroud
+// Suavizar las trnasiciones del cono de vision
+// Implementar las puertas
+//
 // LLamar a la planificacion de las patrullas en la pantalla de carga
 
 public class EnemyController : MonoBehaviour {
     Astar myplanner;
-    bool _follow, _replan, _patrolling, _lookAround;
+    bool _follow, _replan, _patrolling, _alert, _lookAround;
     List<Vector2> _plan;
-    int _current_step, _currentPatrolPlan;
+    int _current_step, _currentPatrolPlan, _currentAlertPlan;
     GameObject player;
     private Rigidbody2D rb2d;
-    List<List<Vector2>> _patrols = null;
+    List<List<Vector2>> _patrols = null, _alertPlans = null;
     List<Vector2> _patrolPoints = null;
     Room _currentRoom;
     Vector3 movDirection, lastKnownMovDirection;
-    float lastSightingClock, lookingAroundClock;
+    Vector2 lastSightingPoint;
+    float lastSightingClock, lookingAroundClock, initAlertClock;
     GameObject _target;
 
 
@@ -27,8 +32,8 @@ public class EnemyController : MonoBehaviour {
     [SerializeField]
     Room _myRoom;
 
-    public float followingTime;
-    public float lookingAroundTime;
+    public float followingTime, lookingAroundTime, alertTime;
+    public float _alertRadius;
     
 
 
@@ -36,34 +41,36 @@ public class EnemyController : MonoBehaviour {
     void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         myplanner = GetComponent<Astar>();
-        myplanner.InitVars(transform.localScale.x * GetComponent<BoxCollider2D>().size.x /2);
+        myplanner.InitVars(transform.localScale.x * GetComponent<BoxCollider2D>().size.x * 0.2f);
         player = GameObject.Find("Player");
         _replan = true;
         _follow = false;
         _patrolling = true;
+        _alert = false;
         _lookAround = false;
         _currentPatrolPlan = 0;
+        _currentAlertPlan = 0;
         movDirection = new Vector3(0, -1, 0);
         _patrolPoints = _myRoom.getPatrol(_roomId);
         for (int i = 0; i < _patrolPoints.Count; i++)
             Debug.DrawLine(_patrolPoints[i], _patrolPoints[i] + new Vector2(0.1f, 0.1f), Color.yellow, 60f);
-        InitPatrols();
+        _patrols = InitPatrols(_patrolPoints);
     }
 
-    void InitPatrols()
+    List<List<Vector2>> InitPatrols(List<Vector2> pointsList)
     {
         float fat_dot= 0.0F;
-        _patrols = new List<List<Vector2>>();
-        for(int i = 0; i < _patrolPoints.Count; i++)
+        List <List<Vector2>> plans = new List<List<Vector2>>();
+        for(int i = 0; i < pointsList.Count; i++)
         {
-            _patrols.Add(myplanner.planToPosition(_patrolPoints[i], _patrolPoints[(i + 1) % _patrolPoints.Count], fat_dot));
-            for(int j = 0; j< _patrols[i].Count - 1; j++)
+            plans.Add(myplanner.planToPosition(pointsList[i], pointsList[(i + 1) % pointsList.Count], fat_dot));
+            for(int j = 0; j< plans[i].Count - 1; j++)
             {
-                Debug.DrawLine(_patrols[i][j], _patrols[i][j + 1], Color.blue, 60f);
+                Debug.DrawLine(plans[i][j], plans[i][j + 1], Color.blue, 60f);
             }
         }
 
-        
+        return plans;
 
     }
 
@@ -87,13 +94,13 @@ public class EnemyController : MonoBehaviour {
         if(movDirection != Vector3.zero) lastKnownMovDirection = movDirection;
         transform.position += movDirection.normalized * Time.deltaTime;
         
-        if (Vector3.Distance(new Vector3(_plan[_current_step].x, _plan[_current_step].y), transform.position) < transform.localScale.x * GetComponent<BoxCollider2D>().size.x)
+        if (Vector3.Distance(new Vector3(_plan[_current_step].x, _plan[_current_step].y), transform.position) < transform.localScale.x * GetComponent<BoxCollider2D>().size.x * 0.2f)
         {
 
             _current_step++;
             if (_current_step >= _plan.Count)
             {
-                if(_follow)_plan.Clear();
+                if(_follow) _plan.Clear();
 
                 _current_step = 0;
                 if (!_follow)
@@ -103,14 +110,36 @@ public class EnemyController : MonoBehaviour {
                 }
                 _replan = true;
             }
-            else {
-            }
+            
         }
 
         Debug.DrawLine(transform.position, transform.position + movDirection);
     }
-	// Update is called once per frame
-	void Update () {
+
+    void InitAlertPatrol()
+    {
+        List <Vector2> alertPatrol = new List<Vector2>();
+        List <Vector2> roomAlertPoints = player.GetComponent<PlayerController>().getRoom().getAlertPoints();
+        alertPatrol.Add(new Vector2(transform.position.x, transform.position.y));
+        for(int i=0; i<roomAlertPoints.Count; i++)
+        {
+            if(Vector2.Distance(roomAlertPoints[i], lastSightingPoint) < _alertRadius)
+            {
+                alertPatrol.Add(roomAlertPoints[i]);
+            }
+        }
+
+        _alertPlans = InitPatrols(alertPatrol);
+
+    }
+
+    void PlanAlert()
+    {
+        _plan = _alertPlans[_currentAlertPlan];
+        _currentAlertPlan = (_currentAlertPlan + 1) % _alertPlans.Count;
+    }
+
+    void Update () {
 
          if (_replan) {
             _replan = false;
@@ -121,10 +150,11 @@ public class EnemyController : MonoBehaviour {
 
             if(_follow)
             {
-                if (Time.time - lastSightingClock > 3)
+                if (Time.time - lastSightingClock > followingTime)
                 {
                     _follow = false;
-                    _patrolling = true;
+                    _alert = true;
+                    initAlertClock = Time.time;
                     float fat_dot = 0.0f;
                     _plan = myplanner.planToPosition(transform.position, _patrolPoints[0], fat_dot);
                     _currentPatrolPlan = 0;
@@ -136,6 +166,25 @@ public class EnemyController : MonoBehaviour {
 
                     
             }
+
+            if(_alert)
+            {   
+                if(Time.time - initAlertClock < alertTime)
+                {
+                    if (_alertPlans == null) InitAlertPatrol();
+                    PlanAlert();
+                }
+                else
+                {
+                    _currentAlertPlan = 0;
+                    _alertPlans = null;
+                    float fat_dot = 0.0f;
+                    _plan = myplanner.planToPosition(transform.position, _patrolPoints[0], fat_dot);
+                    _alert = false;
+                    _patrolling = true;
+                }
+                
+            }
                 
          }
 
@@ -146,9 +195,14 @@ public class EnemyController : MonoBehaviour {
 
     void LookAround()
     {
-        if(Time.time - lookingAroundClock <= lookingAroundTime)
+        float aux_angle;
+
+        if (Time.time - lookingAroundClock <= lookingAroundTime)
         {
-            // Do funny stuff
+            aux_angle = Vector2.SignedAngle(lastKnownMovDirection.normalized, new Vector2(0, 1));
+            if (aux_angle < 0) aux_angle = 360 + aux_angle;
+            lastKnownMovDirection = new Vector2(Mathf.Sin((aux_angle + 2)* Mathf.Deg2Rad), Mathf.Cos((aux_angle + 2) * Mathf.Deg2Rad));
+
         } else
         {
             _lookAround = false;
@@ -168,14 +222,22 @@ public class EnemyController : MonoBehaviour {
         return lastKnownMovDirection.normalized;
     }
 
-    public void SetState(bool patrolling, bool following, bool alert, GameObject target = null)
+    public void FollowSomething(GameObject target = null)
     {
         if(_replan == false) _replan = true;
         if (target != null) _target = target;
         else _target = player;
         lastSightingClock = Time.time;
-        _patrolling = patrolling;
-        _follow = following;
+        lastSightingPoint = _target.transform.position;
+        _patrolling = false;
+        _follow = true;
         _lookAround = false;
+        if (_alert)
+        {
+            _alert = false;
+            _currentAlertPlan = 0;
+            _alertPlans = null;
+            _plan = null;
+        }
     }
 }

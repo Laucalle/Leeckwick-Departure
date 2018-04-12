@@ -44,7 +44,7 @@ public class Hearing : MonoBehaviour {
             if (target.gameObject.GetComponent<PlayerController>().isAudible())
             {
                 audibleTargets.Add(target);
-                GetComponent<EnemyController>().SetState(false, true, false);
+                GetComponent<EnemyController>().FollowSomething();
             }
             
         }
@@ -55,7 +55,7 @@ public class Hearing : MonoBehaviour {
                 Transform target = distractionsInHearRadius[i].transform;
                 Vector3 dirToTarget = (target.position - transform.position).normalized;
                 audibleTargets.Add(target);
-                GetComponent<EnemyController>().SetState(false, true, false, distractionsInHearRadius[i].transform.gameObject);
+                GetComponent<EnemyController>().FollowSomething(distractionsInHearRadius[i].transform.gameObject);
             }
         }
         */
