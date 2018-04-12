@@ -16,10 +16,14 @@ public class EnemyController : MonoBehaviour {
     bool _follow, _replan, _patrolling, _alert, _lookAround;
     List<Vector2> _plan;
     int _current_step, _currentPatrolPlan, _currentAlertPlan;
-    GameObject player;
-    private Rigidbody2D rb2d;
     List<List<Vector2>> _patrols = null, _alertPlans = null;
     List<Vector2> _patrolPoints = null;
+    List<int> _lookingAroundPattern = new List<int>{1,0,-1,-1,0,1};
+
+    private Rigidbody2D rb2d;
+
+    GameObject player;
+
     Room _currentRoom;
     Vector3 movDirection, lastKnownMovDirection;
     Vector2 lastSightingPoint;
@@ -43,15 +47,19 @@ public class EnemyController : MonoBehaviour {
         myplanner = GetComponent<Astar>();
         myplanner.InitVars(transform.localScale.x * GetComponent<BoxCollider2D>().size.x * 0.2f);
         player = GameObject.Find("Player");
+
         _replan = true;
         _follow = false;
         _patrolling = true;
         _alert = false;
         _lookAround = false;
+
         _currentPatrolPlan = 0;
         _currentAlertPlan = 0;
+
         movDirection = new Vector3(0, -1, 0);
         _patrolPoints = _myRoom.getPatrol(_roomId);
+
         for (int i = 0; i < _patrolPoints.Count; i++)
             Debug.DrawLine(_patrolPoints[i], _patrolPoints[i] + new Vector2(0.1f, 0.1f), Color.yellow, 60f);
         _patrols = InitPatrols(_patrolPoints);
@@ -199,9 +207,11 @@ public class EnemyController : MonoBehaviour {
 
         if (Time.time - lookingAroundClock <= lookingAroundTime)
         {
+            int index =(int) Mathf.Floor((Time.time - lookingAroundClock) / (lookingAroundTime / _lookingAroundPattern.Count));
             aux_angle = Vector2.SignedAngle(lastKnownMovDirection.normalized, new Vector2(0, 1));
             if (aux_angle < 0) aux_angle = 360 + aux_angle;
-            lastKnownMovDirection = new Vector2(Mathf.Sin((aux_angle + 2)* Mathf.Deg2Rad), Mathf.Cos((aux_angle + 2) * Mathf.Deg2Rad));
+            lastKnownMovDirection = new Vector2(Mathf.Sin((aux_angle + (2*_lookingAroundPattern[index]))* Mathf.Deg2Rad), 
+                Mathf.Cos((aux_angle + (2 * _lookingAroundPattern[index])) * Mathf.Deg2Rad));
 
         } else
         {
