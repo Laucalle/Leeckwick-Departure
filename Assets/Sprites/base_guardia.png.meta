@@ -1,0 +1,1242 @@
+fileFormatVersion: 2
+guid: 32b37dca1541c914ba4b831d7af6e69a
+timeCreated: 1523899808
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: base_guardia_0
+    21300002: base_guardia_1
+    21300004: base_guardia_2
+    21300006: base_guardia_3
+    21300008: base_guardia_4
+    21300010: base_guardia_5
+    21300012: base_guardia_6
+    21300014: base_guardia_7
+    21300016: base_guardia_8
+    21300018: base_guardia_9
+    21300020: base_guardia_10
+    21300022: base_guardia_11
+    21300024: base_guardia_12
+    21300026: base_guardia_13
+    21300028: base_guardia_14
+    21300030: base_guardia_15
+    21300032: base_guardia_16
+    21300034: base_guardia_17
+    21300036: base_guardia_18
+    21300038: base_guardia_19
+    21300040: base_guardia_20
+    21300042: base_guardia_21
+    21300044: base_guardia_22
+    21300046: base_guardia_23
+    21300048: base_guardia_24
+    21300050: base_guardia_25
+    21300052: base_guardia_26
+    21300054: base_guardia_27
+    21300056: base_guardia_28
+    21300058: base_guardia_29
+    21300060: base_guardia_30
+    21300062: base_guardia_31
+    21300064: base_guardia_32
+    21300066: base_guardia_33
+    21300068: base_guardia_34
+    21300070: base_guardia_35
+    21300072: base_guardia_36
+    21300074: base_guardia_37
+    21300076: base_guardia_38
+    21300078: base_guardia_39
+    21300080: base_guardia_40
+    21300082: base_guardia_41
+    21300084: base_guardia_42
+    21300086: base_guardia_43
+    21300088: base_guardia_44
+    21300090: base_guardia_45
+    21300092: base_guardia_46
+    21300094: base_guardia_47
+    21300096: base_guardia_48
+    21300098: base_guardia_49
+    21300100: base_guardia_50
+    21300102: base_guardia_51
+    21300104: base_guardia_52
+    21300106: base_guardia_53
+    21300108: base_guardia_54
+    21300110: base_guardia_55
+    21300112: base_guardia_56
+    21300114: base_guardia_57
+    21300116: base_guardia_58
+    21300118: base_guardia_59
+    21300120: base_guardia_60
+    21300122: base_guardia_61
+    21300124: base_guardia_62
+    21300126: base_guardia_63
+    21300128: base_guardia_64
+    21300130: base_guardia_65
+    21300132: base_guardia_66
+    21300134: base_guardia_67
+    21300136: base_guardia_68
+    21300138: base_guardia_69
+    21300140: base_guardia_70
+    21300142: base_guardia_71
+    21300144: base_guardia_72
+    21300146: base_guardia_73
+    21300148: base_guardia_74
+    21300150: base_guardia_75
+    21300152: base_guardia_76
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: base_guardia_0
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 3916
+        width: 289
+        height: 510
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_1
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 3916
+        width: 270
+        height: 510
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_2
+      rect:
+        serializedVersion: 2
+        x: 1476
+        y: 3875
+        width: 247
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_3
+      rect:
+        serializedVersion: 2
+        x: 2117
+        y: 3875
+        width: 247
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_4
+      rect:
+        serializedVersion: 2
+        x: 2754
+        y: 3875
+        width: 270
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_5
+      rect:
+        serializedVersion: 2
+        x: 3377
+        y: 3894
+        width: 266
+        height: 550
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_6
+      rect:
+        serializedVersion: 2
+        x: 3996
+        y: 3916
+        width: 288
+        height: 510
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_7
+      rect:
+        serializedVersion: 2
+        x: 4637
+        y: 3916
+        width: 307
+        height: 510
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_8
+      rect:
+        serializedVersion: 2
+        x: 5274
+        y: 3875
+        width: 330
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_9
+      rect:
+        serializedVersion: 2
+        x: 5934
+        y: 3875
+        width: 270
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_10
+      rect:
+        serializedVersion: 2
+        x: 6557
+        y: 3875
+        width: 289
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_11
+      rect:
+        serializedVersion: 2
+        x: 7217
+        y: 3894
+        width: 289
+        height: 550
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_12
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 3215
+        width: 247
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_13
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 3275
+        width: 270
+        height: 510
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_14
+      rect:
+        serializedVersion: 2
+        x: 1476
+        y: 3294
+        width: 247
+        height: 509
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_15
+      rect:
+        serializedVersion: 2
+        x: 2117
+        y: 3275
+        width: 266
+        height: 528
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_16
+      rect:
+        serializedVersion: 2
+        x: 2754
+        y: 3256
+        width: 289
+        height: 547
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_17
+      rect:
+        serializedVersion: 2
+        x: 3396
+        y: 3196
+        width: 270
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_18
+      rect:
+        serializedVersion: 2
+        x: 4037
+        y: 3215
+        width: 289
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_19
+      rect:
+        serializedVersion: 2
+        x: 4656
+        y: 3275
+        width: 307
+        height: 510
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_20
+      rect:
+        serializedVersion: 2
+        x: 5274
+        y: 3294
+        width: 312
+        height: 509
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_21
+      rect:
+        serializedVersion: 2
+        x: 5897
+        y: 3275
+        width: 307
+        height: 528
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_22
+      rect:
+        serializedVersion: 2
+        x: 6594
+        y: 3256
+        width: 252
+        height: 547
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_23
+      rect:
+        serializedVersion: 2
+        x: 7236
+        y: 3196
+        width: 247
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_24
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 2596
+        width: 349
+        height: 529
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_25
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 2596
+        width: 312
+        height: 529
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_26
+      rect:
+        serializedVersion: 2
+        x: 1457
+        y: 2615
+        width: 326
+        height: 528
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_27
+      rect:
+        serializedVersion: 2
+        x: 2057
+        y: 2615
+        width: 386
+        height: 528
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_28
+      rect:
+        serializedVersion: 2
+        x: 2717
+        y: 2596
+        width: 386
+        height: 547
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_29
+      rect:
+        serializedVersion: 2
+        x: 3377
+        y: 2574
+        width: 386
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_30
+      rect:
+        serializedVersion: 2
+        x: 3996
+        y: 2555
+        width: 330
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_31
+      rect:
+        serializedVersion: 2
+        x: 4614
+        y: 2555
+        width: 312
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_32
+      rect:
+        serializedVersion: 2
+        x: 5256
+        y: 2555
+        width: 367
+        height: 588
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_33
+      rect:
+        serializedVersion: 2
+        x: 5897
+        y: 2615
+        width: 427
+        height: 528
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_34
+      rect:
+        serializedVersion: 2
+        x: 6497
+        y: 2634
+        width: 446
+        height: 509
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_35
+      rect:
+        serializedVersion: 2
+        x: 7217
+        y: 2615
+        width: 409
+        height: 528
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_36
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 1955
+        width: 330
+        height: 529
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_37
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 1955
+        width: 270
+        height: 529
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_38
+      rect:
+        serializedVersion: 2
+        x: 1416
+        y: 1974
+        width: 330
+        height: 532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_39
+      rect:
+        serializedVersion: 2
+        x: 2034
+        y: 1974
+        width: 390
+        height: 532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_40
+      rect:
+        serializedVersion: 2
+        x: 2657
+        y: 1955
+        width: 386
+        height: 551
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_41
+      rect:
+        serializedVersion: 2
+        x: 3276
+        y: 1936
+        width: 390
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_42
+      rect:
+        serializedVersion: 2
+        x: 3996
+        y: 1914
+        width: 307
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_43
+      rect:
+        serializedVersion: 2
+        x: 4674
+        y: 1914
+        width: 270
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_44
+      rect:
+        serializedVersion: 2
+        x: 5256
+        y: 1914
+        width: 348
+        height: 592
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_45
+      rect:
+        serializedVersion: 2
+        x: 5856
+        y: 1996
+        width: 450
+        height: 510
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_46
+      rect:
+        serializedVersion: 2
+        x: 6474
+        y: 1974
+        width: 432
+        height: 532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_47
+      rect:
+        serializedVersion: 2
+        x: 7097
+        y: 1974
+        width: 409
+        height: 532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_48
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 1277
+        width: 289
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_49
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 1277
+        width: 288
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_50
+      rect:
+        serializedVersion: 2
+        x: 1457
+        y: 1277
+        width: 289
+        height: 588
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_51
+      rect:
+        serializedVersion: 2
+        x: 2094
+        y: 1277
+        width: 312
+        height: 588
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_52
+      rect:
+        serializedVersion: 2
+        x: 2736
+        y: 1277
+        width: 307
+        height: 588
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_53
+      rect:
+        serializedVersion: 2
+        x: 3377
+        y: 1277
+        width: 307
+        height: 588
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_54
+      rect:
+        serializedVersion: 2
+        x: 4014
+        y: 1277
+        width: 289
+        height: 588
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_55
+      rect:
+        serializedVersion: 2
+        x: 4656
+        y: 1277
+        width: 288
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_56
+      rect:
+        serializedVersion: 2
+        x: 5316
+        y: 1277
+        width: 228
+        height: 588
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_57
+      rect:
+        serializedVersion: 2
+        x: 5957
+        y: 1277
+        width: 229
+        height: 588
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_58
+      rect:
+        serializedVersion: 2
+        x: 6594
+        y: 1277
+        width: 229
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_59
+      rect:
+        serializedVersion: 2
+        x: 7236
+        y: 1277
+        width: 228
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_60
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 635
+        width: 229
+        height: 611
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_61
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 635
+        width: 229
+        height: 611
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_62
+      rect:
+        serializedVersion: 2
+        x: 1476
+        y: 635
+        width: 228
+        height: 589
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_63
+      rect:
+        serializedVersion: 2
+        x: 2136
+        y: 635
+        width: 210
+        height: 589
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_64
+      rect:
+        serializedVersion: 2
+        x: 2777
+        y: 635
+        width: 206
+        height: 589
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_65
+      rect:
+        serializedVersion: 2
+        x: 3414
+        y: 635
+        width: 210
+        height: 611
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_66
+      rect:
+        serializedVersion: 2
+        x: 4056
+        y: 635
+        width: 210
+        height: 611
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_67
+      rect:
+        serializedVersion: 2
+        x: 4697
+        y: 635
+        width: 206
+        height: 611
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_68
+      rect:
+        serializedVersion: 2
+        x: 5334
+        y: 635
+        width: 210
+        height: 611
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_69
+      rect:
+        serializedVersion: 2
+        x: 5976
+        y: 635
+        width: 210
+        height: 589
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_70
+      rect:
+        serializedVersion: 2
+        x: 6576
+        y: 695
+        width: 288
+        height: 551
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_71
+      rect:
+        serializedVersion: 2
+        x: 7217
+        y: 695
+        width: 289
+        height: 551
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_72
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 54
+        width: 289
+        height: 551
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_73
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 54
+        width: 288
+        height: 532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_74
+      rect:
+        serializedVersion: 2
+        x: 1457
+        y: 54
+        width: 289
+        height: 532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_75
+      rect:
+        serializedVersion: 2
+        x: 2094
+        y: 54
+        width: 289
+        height: 532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: base_guardia_76
+      rect:
+        serializedVersion: 2
+        x: 2736
+        y: 54
+        width: 288
+        height: 551
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

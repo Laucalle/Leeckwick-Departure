@@ -30,15 +30,16 @@ public class ShowMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-        if( !pressed && Input.anyKey)
+
+        if ( !pressed && Input.anyKey)
         {
             pressed = true;
             anim.SetTrigger("AnyKey");
             timeTrigger = Time.time;
+            Debug.Log("KeyPressed");
         }
 
-        if(pressed && !menuActive && Time.time - timeTrigger >= 1.8)
+        if(pressed && !menuActive && Time.time - timeTrigger >= 2.5)
         {
             menuPanel.SetActive(true);
             menuActive = true;

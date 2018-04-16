@@ -196,7 +196,7 @@ public class EnemyController : MonoBehaviour {
                 
          }
 
-        if (_lookAround) LookAround();
+        if (_lookAround && Time.timeScale == 1) LookAround();
         else ExecutePlanStep();    
         
     }
