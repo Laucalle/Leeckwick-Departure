@@ -165,11 +165,6 @@ public class EnemyController : MonoBehaviour {
                     _alert = true;
                     initAlertClock = Time.time;
                     float fat_dot = 0.0f;
-                    /*_plan = myplanner.planToPosition(transform.position, _patrolPoints[0], fat_dot);
-                    for (int j = 0; j < _plan.Count - 1; j++)
-                    {
-                        Debug.DrawLine(_plan[j], _plan[j + 1], Color.blue, 60f);
-                    }*/
                     _currentPatrolPlan = 0;
                 }
                 else
@@ -235,6 +230,11 @@ public class EnemyController : MonoBehaviour {
     public Vector3 getDir()
     {
         return lastKnownMovDirection.normalized;
+    }
+
+    public bool IsLookingAround()
+    {
+        return _lookAround;
     }
 
     public void FollowSomething(GameObject target = null)
