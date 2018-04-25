@@ -15,6 +15,25 @@ public class PlayerAnimationController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            anim.SetTrigger("Forward");
+        } else if (Input.GetKey(KeyCode.S))
+        {
+            anim.SetTrigger("Backward");
+        } else if (Input.GetKey(KeyCode.A))
+        {
+            anim.SetTrigger("Left");
+        } else if (Input.GetKey(KeyCode.D))
+        {
+            anim.SetTrigger("Right");
+        } else
+        {
+            anim.SetTrigger("Idle");
+        }
+
+
+
+    }
 }

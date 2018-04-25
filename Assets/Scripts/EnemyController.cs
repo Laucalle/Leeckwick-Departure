@@ -16,8 +16,8 @@ public class EnemyController : MonoBehaviour {
     bool _follow, _replan, _patrolling, _alert, _lookAround;
     List<Vector2> _plan;
     int _current_step, _currentPatrolPlan, _currentAlertPlan;
-    List<List<Vector2>> _patrols = null, _alertPlans = null;
-    List<Vector2> _patrolPoints = null;
+    List<List<Vector2>> _patrols = null;
+    List<Vector2> _patrolPoints = null, _alertPoints = null;
     List<int> _lookingAroundPattern = new List<int>{1,0,-1,-1,0,1};
 
     private Rigidbody2D rb2d;
@@ -97,7 +97,7 @@ public class EnemyController : MonoBehaviour {
     }
 
     void ExecutePlanStep() {
-
+        //Vector3 fit = transform.position + new Vector3(GetComponent<BoxCollider2D>().offset.x, GetComponent<BoxCollider2D>().offset.y);
         movDirection = (new Vector3(_plan[_current_step].x, _plan[_current_step].y) - transform.position);
         if(movDirection != Vector3.zero) lastKnownMovDirection = movDirection;
         transform.position += movDirection.normalized * Time.deltaTime;
@@ -137,14 +137,15 @@ public class EnemyController : MonoBehaviour {
             }
         }
 
-        _alertPlans = InitPatrols(alertPatrol);
+        _alertPoints = alertPatrol;
 
     }
 
     void PlanAlert()
     {
-        _plan = _alertPlans[_currentAlertPlan];
-        _currentAlertPlan = (_currentAlertPlan + 1) % _alertPlans.Count;
+        _currentAlertPlan = (_currentAlertPlan + 1) % _alertPoints.Count;
+        float fat_dot = 0.0F;
+        _plan = myplanner.planToPosition(new Vector2(transform.position.x, transform.position.y), _alertPoints[_currentAlertPlan], fat_dot);
     }
 
     void Update () {
@@ -164,7 +165,11 @@ public class EnemyController : MonoBehaviour {
                     _alert = true;
                     initAlertClock = Time.time;
                     float fat_dot = 0.0f;
-                    _plan = myplanner.planToPosition(transform.position, _patrolPoints[0], fat_dot);
+                    /*_plan = myplanner.planToPosition(transform.position, _patrolPoints[0], fat_dot);
+                    for (int j = 0; j < _plan.Count - 1; j++)
+                    {
+                        Debug.DrawLine(_plan[j], _plan[j + 1], Color.blue, 60f);
+                    }*/
                     _currentPatrolPlan = 0;
                 }
                 else
@@ -179,13 +184,13 @@ public class EnemyController : MonoBehaviour {
             {   
                 if(Time.time - initAlertClock < alertTime)
                 {
-                    if (_alertPlans == null) InitAlertPatrol();
+                    if (_alertPoints == null) InitAlertPatrol();
                     PlanAlert();
                 }
                 else
                 {
                     _currentAlertPlan = 0;
-                    _alertPlans = null;
+                    _alertPoints = null;
                     float fat_dot = 0.0f;
                     _plan = myplanner.planToPosition(transform.position, _patrolPoints[0], fat_dot);
                     _alert = false;
@@ -246,7 +251,7 @@ public class EnemyController : MonoBehaviour {
         {
             _alert = false;
             _currentAlertPlan = 0;
-            _alertPlans = null;
+            _alertPoints = null;
             _plan = null;
         }
     }
