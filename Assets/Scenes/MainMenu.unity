@@ -723,7 +723,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1450,6 +1450,48 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!1001 &1181617146
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4994470357972342, guid: cfaaf3a5d8ec91e4c9de3ba6dbee26b7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -191.18796
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994470357972342, guid: cfaaf3a5d8ec91e4c9de3ba6dbee26b7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 79.46658
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994470357972342, guid: cfaaf3a5d8ec91e4c9de3ba6dbee26b7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -7.875
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994470357972342, guid: cfaaf3a5d8ec91e4c9de3ba6dbee26b7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994470357972342, guid: cfaaf3a5d8ec91e4c9de3ba6dbee26b7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994470357972342, guid: cfaaf3a5d8ec91e4c9de3ba6dbee26b7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994470357972342, guid: cfaaf3a5d8ec91e4c9de3ba6dbee26b7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994470357972342, guid: cfaaf3a5d8ec91e4c9de3ba6dbee26b7, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: cfaaf3a5d8ec91e4c9de3ba6dbee26b7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1299580644
 GameObject:
   m_ObjectHideFlags: 0
