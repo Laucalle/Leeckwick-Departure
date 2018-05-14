@@ -14,9 +14,9 @@ public class MenuManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        agents.text = "Agent Rescued: " + control.agents;
-        passports.text = "Passports: " + control.passport;
-        food.text = "Food: " + control.food;
+        agents.text = ""+control.agents;
+        passports.text = "" + control.passport;
+        food.text = "" + control.food;
         if (control.passport < 1) send.interactable = false;
         if (control.food < 1) feed.interactable = false;
 
@@ -30,8 +30,8 @@ public class MenuManager : MonoBehaviour {
     public void SendAgent()
     {
         control.SendAgent();
-        agents.text = "Agent Rescued: " + control.agents;
-        passports.text = "Passports: " + control.passport;
+        agents.text = "" + control.agents;
+        passports.text = "" + control.passport;
 
         if (control.passport < 1) send.interactable = false;
 
@@ -40,7 +40,7 @@ public class MenuManager : MonoBehaviour {
     public void FeedAgents()
     {
         control.FeedAgents();
-        food.text = "Food: " + control.food;
+        food.text = "" + control.food;
 
         if (control.food < 1) feed.interactable = false;
     }

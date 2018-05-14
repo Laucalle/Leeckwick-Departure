@@ -18,7 +18,21 @@ public class Room : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        for (int i = 0; i < _AlertPoints.Count; i++) {
+            _AlertPoints[i] = new Vector2(_AlertPoints[i].x + transform.position.x, _AlertPoints[i].y + transform.position.y);
+        }
+        for (int i = 0; i < _Patrol_1.Count; i++)
+        {
+            _Patrol_1[i] = new Vector2(_Patrol_1[i].x + transform.position.x, _Patrol_1[i].y + transform.position.y);
+        }
+        for (int i = 0; i < _Patrol_2.Count; i++)
+        {
+            _Patrol_2[i] = new Vector2(_Patrol_2[i].x + transform.position.x, _Patrol_2[i].y + transform.position.y);
+        }
+        for (int i = 0; i < _Patrol_3.Count; i++)
+        {
+            _Patrol_3[i] = new Vector2(_Patrol_3[i].x + transform.position.x, _Patrol_3[i].y + transform.position.y);
+        }
     }
 	
 	// Update is called once per frame
