@@ -30,6 +30,17 @@ public class LocalInventory : MonoBehaviour {
 
     }
 
+    public int GetFood()
+    {
+        return carrying[ItemType.food];
+    }
+
+    public int GetPassports()
+    {
+        return carrying[ItemType.passport];
+    }
+
+
     void UpdateDisplay()
     {
         display.text = "Food: " + carrying[ItemType.food] + "\n Passports: " + carrying[ItemType.passport] + "\n Distractions: " + carrying[ItemType.distraction];
