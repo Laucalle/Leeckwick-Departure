@@ -4,34 +4,43 @@ using UnityEngine;
 
 public class Room : MonoBehaviour {
 
-    [SerializeField]
-    List<Vector2> _AlertPoints;
 
     [SerializeField]
-    List<Vector2> _Patrol_1;
+    List<Transform> alert_marking_objects;
+
+    List<Vector2> _AlertPoints = new List<Vector2>();
 
     [SerializeField]
-    List<Vector2> _Patrol_2;
+    List<Transform> patrol_1_marking_objects;
+
+    List<Vector2> _Patrol_1 = new List<Vector2>();
 
     [SerializeField]
-    List<Vector2> _Patrol_3;
+    List<Transform> patrol_2_marking_objects;
+
+    List<Vector2> _Patrol_2 = new List<Vector2>();
+
+    [SerializeField]
+    List<Transform> patrol_3_marking_objects;
+
+    List<Vector2> _Patrol_3 = new List<Vector2>();
 
     // Use this for initialization
-    void Start () {
-        for (int i = 0; i < _AlertPoints.Count; i++) {
-            _AlertPoints[i] = new Vector2(_AlertPoints[i].x + transform.position.x, _AlertPoints[i].y + transform.position.y);
+    void Awake () {
+        for (int i = 0; i < alert_marking_objects.Count; i++) {
+            _AlertPoints.Add(new Vector2(alert_marking_objects[i].position.x, alert_marking_objects[i].position.y));
         }
-        for (int i = 0; i < _Patrol_1.Count; i++)
+        for (int i = 0; i < patrol_1_marking_objects.Count; i++)
         {
-            _Patrol_1[i] = new Vector2(_Patrol_1[i].x + transform.position.x, _Patrol_1[i].y + transform.position.y);
+            _Patrol_1.Add(new Vector2(patrol_1_marking_objects[i].position.x, patrol_1_marking_objects[i].position.y ));
         }
-        for (int i = 0; i < _Patrol_2.Count; i++)
+        for (int i = 0; i < patrol_2_marking_objects.Count; i++)
         {
-            _Patrol_2[i] = new Vector2(_Patrol_2[i].x + transform.position.x, _Patrol_2[i].y + transform.position.y);
+            _Patrol_2.Add( new Vector2(patrol_2_marking_objects[i].position.x, patrol_2_marking_objects[i].position.y ));
         }
-        for (int i = 0; i < _Patrol_3.Count; i++)
+        for (int i = 0; i < patrol_3_marking_objects.Count; i++)
         {
-            _Patrol_3[i] = new Vector2(_Patrol_3[i].x + transform.position.x, _Patrol_3[i].y + transform.position.y);
+            _Patrol_3.Add(new Vector2(patrol_3_marking_objects[i].position.x , patrol_3_marking_objects[i].position.y));
         }
     }
 	
