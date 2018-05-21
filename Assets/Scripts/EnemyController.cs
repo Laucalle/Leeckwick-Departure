@@ -30,7 +30,8 @@ public class EnemyController : MonoBehaviour {
     float lastSightingClock, lookingAroundClock, initAlertClock;
     GameObject _target;
 
-
+    [SerializeField]
+    TransformListContainer alert_point_list;
     [SerializeField]
     int _roomId;
     [SerializeField]
@@ -127,13 +128,13 @@ public class EnemyController : MonoBehaviour {
     void InitAlertPatrol()
     {
         List <Vector2> alertPatrol = new List<Vector2>();
-        List <Vector2> roomAlertPoints = player.GetComponent<PlayerController>().getRoom().getAlertPoints();
+        List <Transform> roomAlertPoints = alert_point_list.points;
         alertPatrol.Add(new Vector2(transform.position.x, transform.position.y));
         for(int i=0; i<roomAlertPoints.Count; i++)
         {
-            if(Vector2.Distance(roomAlertPoints[i], lastSightingPoint) < _alertRadius)
+            if(Vector2.Distance(roomAlertPoints[i].position, lastSightingPoint) < _alertRadius)
             {
-                alertPatrol.Add(roomAlertPoints[i]);
+                alertPatrol.Add(roomAlertPoints[i].position);
             }
         }
 
@@ -166,6 +167,7 @@ public class EnemyController : MonoBehaviour {
                     initAlertClock = Time.time;
                     float fat_dot = 0.0f;
                     _currentPatrolPlan = 0;
+                    GetComponent<FieldOfView>().active_mat_idx = 2;
                 }
                 else
                 {
@@ -180,7 +182,18 @@ public class EnemyController : MonoBehaviour {
                 if(Time.time - initAlertClock < alertTime)
                 {
                     if (_alertPoints == null) InitAlertPatrol();
-                    PlanAlert();
+                    if (_alertPoints.Count == 1)
+                    {
+                        Debug.Log("NO HABIA PUNTOS");
+                        _currentAlertPlan = 0;
+                        _alertPoints = null;
+                        float fat_dot = 0.0f;
+                        _plan = myplanner.planToPosition(transform.position, _patrolPoints[0], fat_dot);
+                        _alert = false;
+                        _patrolling = true;
+                        GetComponent<FieldOfView>().active_mat_idx = 0;
+                    }
+                    else  PlanAlert();
                 }
                 else
                 {
@@ -190,6 +203,7 @@ public class EnemyController : MonoBehaviour {
                     _plan = myplanner.planToPosition(transform.position, _patrolPoints[0], fat_dot);
                     _alert = false;
                     _patrolling = true;
+                    GetComponent<FieldOfView>().active_mat_idx = 0;
                 }
                 
             }
@@ -247,6 +261,7 @@ public class EnemyController : MonoBehaviour {
         _patrolling = false;
         _follow = true;
         _lookAround = false;
+        GetComponent<FieldOfView>().active_mat_idx = 1;
         if (_alert)
         {
             _alert = false;

@@ -25,6 +25,9 @@ public class FieldOfView : MonoBehaviour
     public float meshResolution;
     public MeshFilter viewMeshFilter;
     Mesh viewMesh;
+    public List<Material> state_mat;
+    [HideInInspector]
+    public int active_mat_idx = 0;
     [Range(0, 360)]
     public float viewAngle;
     public EnemyController enemyRef;
@@ -132,6 +135,7 @@ public class FieldOfView : MonoBehaviour
         viewMesh.vertices = vertices;
         viewMesh.triangles = triangles;
         viewMesh.RecalculateNormals();
+        viewMeshFilter.GetComponent<MeshRenderer>().material = state_mat[active_mat_idx];
     }
 
     private viewCastInfo viewCast(float globalAngle)
