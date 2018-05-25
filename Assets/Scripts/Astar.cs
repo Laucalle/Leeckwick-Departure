@@ -89,7 +89,7 @@ public class Astar : MonoBehaviour {
         Vector2 vstep = new Vector2(-step,step);
         float distance_diag = Vector2.Distance( current.pos, vstep + current.pos);
 
-        RaycastHit2D hit = Physics2D.Linecast(current.pos, current.pos + (vstep*ray_factor), blockingLayer);
+        RaycastHit2D hit = Physics2D.Linecast(current.pos, current.pos + (vstep * ray_factor), blockingLayer);
         result.Add(new KeyValuePair<bool, Vector2>(hit.collider == null, current.pos + vstep));
 
         vstep = new Vector2(0, step);
@@ -133,7 +133,7 @@ public class Astar : MonoBehaviour {
     }
     
     private void ExpandNode(Node current, Vector2 destination, float step) {
-
+        
         List<KeyValuePair<bool, Vector2>> possible_nodes = TryRay(current, step);
 
         for (int i = 1; i <= possible_nodes.Count; i++) {
