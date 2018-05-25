@@ -24,10 +24,9 @@ public class WinCondition : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Ganaste");
-        gc.food += collision.gameObject.GetComponent<LocalInventory>().GetFood();
-        gc.passport += collision.gameObject.GetComponent<LocalInventory>().GetPassports();
-        gc.agents += agentsInHere;
+        GameControl.control.food += collision.gameObject.GetComponent<LocalInventory>().GetFood();
+        GameControl.control.passport += collision.gameObject.GetComponent<LocalInventory>().GetPassports();
+        GameControl.control.agents += agentsInHere;
         winMenu.SetActive(true);
         Time.timeScale = 0;
         food.text = collision.gameObject.GetComponent<LocalInventory>().GetFood() + " " + food.text;

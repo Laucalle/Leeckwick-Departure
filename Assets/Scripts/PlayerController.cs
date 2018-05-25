@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour {
     bool _run;
     bool _audible;
     public Room _currentRoom;
+    public GameControl gc;
+    public GameObject looseMenu;
+    public AudioSource Visa;
+    public AudioSource Slottskogen;
 
     private Rigidbody2D rb2d;
 	// Use this for initialization
@@ -32,6 +36,20 @@ public class PlayerController : MonoBehaviour {
     public Room getRoom()
     {
         return _currentRoom;
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.GetComponent<EnemyController>() != null)
+        {
+            Debug.Log("Perdiste");
+            GameControl.control.agents -= 1;
+            Visa.Pause();
+            Slottskogen.Play();
+            Time.timeScale = 0;
+            looseMenu.SetActive(true);
+        }
+
     }
 
     private void FixedUpdate()

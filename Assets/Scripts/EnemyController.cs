@@ -23,7 +23,6 @@ public class EnemyController : MonoBehaviour {
     private Rigidbody2D rb2d;
 
     GameObject player;
-
     Room _currentRoom;
     Vector3 movDirection, lastKnownMovDirection;
     Vector2 lastSightingPoint;
@@ -39,7 +38,6 @@ public class EnemyController : MonoBehaviour {
 
     public float followingTime, lookingAroundTime, alertTime;
     public float _alertRadius;
-    
 
 
     // Use this for initialization
@@ -231,14 +229,6 @@ public class EnemyController : MonoBehaviour {
         {
             _lookAround = false;
         }
-    }
-
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (coll.gameObject.name == "Player") {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-        
     }
 
     public Vector3 getDir()

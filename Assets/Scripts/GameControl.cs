@@ -27,13 +27,13 @@ public class GameControl : MonoBehaviour {
 
     public void SendAgent()
     {
-        passport -= 1;
-        agents -= 1;
+        control.passport -= 1;
+        control.agents -= 1;
     }
 
     public void FeedAgents()
     {
-        food -= 1;
+        control.food -= 1;
     }
 	
 	// Update is called once per frame

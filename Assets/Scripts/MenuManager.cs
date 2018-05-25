@@ -10,16 +10,17 @@ public class MenuManager : MonoBehaviour {
     public Text food;
     public Button send;
     public Button feed;
+    public Button start;
 
     // Use this for initialization
     void Start () {
 
-        agents.text = ""+control.agents;
-        passports.text = "" + control.passport;
-        food.text = "" + control.food;
-        if (control.passport < 1) send.interactable = false;
-        if (control.food < 1) feed.interactable = false;
-
+        agents.text = ""+ GameControl.control.agents;
+        passports.text = "" + GameControl.control.passport;
+        food.text = "" + GameControl.control.food;
+        if (GameControl.control.passport < 1) send.interactable = false;
+        if (GameControl.control.food < 1) feed.interactable = false;
+        if (GameControl.control.agents < 1) start.interactable = false;
     }
 	
 	// Update is called once per frame
@@ -29,19 +30,21 @@ public class MenuManager : MonoBehaviour {
 
     public void SendAgent()
     {
-        control.SendAgent();
-        agents.text = "" + control.agents;
-        passports.text = "" + control.passport;
+        GameControl.control.SendAgent();
+        agents.text = "" + GameControl.control.agents;
+        passports.text = "" + GameControl.control.passport;
 
-        if (control.passport < 1) send.interactable = false;
+        if (GameControl.control.passport < 1) send.interactable = false;
+        if (GameControl.control.agents < 1) start.interactable = false;
 
     }
 
     public void FeedAgents()
     {
-        control.FeedAgents();
-        food.text = "" + control.food;
+        GameControl.control.FeedAgents();
+        food.text = "" + GameControl.control.food;
 
-        if (control.food < 1) feed.interactable = false;
+        if (GameControl.control.food < 1) feed.interactable = false;
+        if (GameControl.control.agents < 1) start.interactable = false;
     }
 }
