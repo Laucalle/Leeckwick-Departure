@@ -676,7 +676,7 @@ GameObject:
   - component: {fileID: 46226474}
   - component: {fileID: 46226473}
   - component: {fileID: 46226472}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: distraction (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2414,13 +2414,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: Resume
-        m_Mode: 1
+      - m_Target: {fileID: 154370263}
+        m_MethodName: LoadByIndex
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2579,7 +2579,7 @@ GameObject:
   - component: {fileID: 165637284}
   - component: {fileID: 165637283}
   - component: {fileID: 165637282}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: distraction (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3862,7 +3862,7 @@ GameObject:
   - component: {fileID: 273284044}
   - component: {fileID: 273284043}
   - component: {fileID: 273284042}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: passport (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4735,7 +4735,7 @@ GameObject:
   - component: {fileID: 373436003}
   - component: {fileID: 373436002}
   - component: {fileID: 373436001}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: food (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6162,7 +6162,7 @@ GameObject:
   - component: {fileID: 529524201}
   - component: {fileID: 529524200}
   - component: {fileID: 529524199}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: distraction (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6966,7 +6966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c25ec4692a72047b8da266b122b36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ray_factor: 4
+  ray_factor: 5
   blockingLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -7195,6 +7195,16 @@ Prefab:
     - target: {fileID: 114147749651930948, guid: f3574228fa3e1e24bbc3761460feb95f,
         type: 2}
       propertyPath: _alertRadius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 61404144245021248, guid: f3574228fa3e1e24bbc3761460feb95f,
+        type: 2}
+      propertyPath: m_EdgeRadius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114979082001708082, guid: f3574228fa3e1e24bbc3761460feb95f,
+        type: 2}
+      propertyPath: ray_factor
       value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8312,6 +8322,11 @@ Prefab:
       propertyPath: _alertRadius
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114979082001708082, guid: f3574228fa3e1e24bbc3761460feb95f,
+        type: 2}
+      propertyPath: ray_factor
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f3574228fa3e1e24bbc3761460feb95f, type: 2}
   m_IsPrefabParent: 0
@@ -8556,7 +8571,7 @@ GameObject:
   - component: {fileID: 797142508}
   - component: {fileID: 797142507}
   - component: {fileID: 797142506}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: passport (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9072,6 +9087,11 @@ Prefab:
       propertyPath: _alertRadius
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114979082001708082, guid: f3574228fa3e1e24bbc3761460feb95f,
+        type: 2}
+      propertyPath: ray_factor
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f3574228fa3e1e24bbc3761460feb95f, type: 2}
   m_IsPrefabParent: 0
@@ -9086,7 +9106,7 @@ GameObject:
   - component: {fileID: 835194260}
   - component: {fileID: 835194259}
   - component: {fileID: 835194258}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: food (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10240,6 +10260,11 @@ Prefab:
       propertyPath: _alertRadius
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114979082001708082, guid: f3574228fa3e1e24bbc3761460feb95f,
+        type: 2}
+      propertyPath: ray_factor
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f3574228fa3e1e24bbc3761460feb95f, type: 2}
   m_IsPrefabParent: 0
@@ -10748,7 +10773,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 363281455}
         m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
@@ -10927,7 +10952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c25ec4692a72047b8da266b122b36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ray_factor: 4
+  ray_factor: 5
   blockingLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -11428,7 +11453,7 @@ GameObject:
   - component: {fileID: 1150939142}
   - component: {fileID: 1150939141}
   - component: {fileID: 1150939144}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11540,7 +11565,7 @@ GameObject:
   - component: {fileID: 1151592299}
   - component: {fileID: 1151592298}
   - component: {fileID: 1151592297}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: passport (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12635,7 +12660,7 @@ GameObject:
   - component: {fileID: 1275833005}
   - component: {fileID: 1275833004}
   - component: {fileID: 1275833003}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: passport (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13211,6 +13236,11 @@ Prefab:
       propertyPath: _alertRadius
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114979082001708082, guid: f3574228fa3e1e24bbc3761460feb95f,
+        type: 2}
+      propertyPath: ray_factor
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f3574228fa3e1e24bbc3761460feb95f, type: 2}
   m_IsPrefabParent: 0
@@ -13400,6 +13430,11 @@ Prefab:
     - target: {fileID: 114147749651930948, guid: f3574228fa3e1e24bbc3761460feb95f,
         type: 2}
       propertyPath: _alertRadius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114979082001708082, guid: f3574228fa3e1e24bbc3761460feb95f,
+        type: 2}
+      propertyPath: ray_factor
       value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -15697,7 +15732,7 @@ GameObject:
   - component: {fileID: 1497579267}
   - component: {fileID: 1497579266}
   - component: {fileID: 1497579265}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: food (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16749,7 +16784,7 @@ GameObject:
   - component: {fileID: 1644247375}
   - component: {fileID: 1644247374}
   - component: {fileID: 1644247373}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: distraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17163,6 +17198,11 @@ Prefab:
       propertyPath: _alertRadius
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114979082001708082, guid: f3574228fa3e1e24bbc3761460feb95f,
+        type: 2}
+      propertyPath: ray_factor
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f3574228fa3e1e24bbc3761460feb95f, type: 2}
   m_IsPrefabParent: 0
@@ -17532,7 +17572,7 @@ GameObject:
   - component: {fileID: 1740076330}
   - component: {fileID: 1740076329}
   - component: {fileID: 1740076328}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: distraction (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18385,6 +18425,11 @@ Prefab:
       propertyPath: _alertRadius
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114979082001708082, guid: f3574228fa3e1e24bbc3761460feb95f,
+        type: 2}
+      propertyPath: ray_factor
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f3574228fa3e1e24bbc3761460feb95f, type: 2}
   m_IsPrefabParent: 0
@@ -18603,7 +18648,7 @@ GameObject:
   - component: {fileID: 1833621145}
   - component: {fileID: 1833621144}
   - component: {fileID: 1833621143}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: food (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19021,7 +19066,7 @@ GameObject:
   - component: {fileID: 1883982950}
   - component: {fileID: 1883982949}
   - component: {fileID: 1883982948}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: passport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
